@@ -25,7 +25,7 @@ public class bloqueJuego extends bloque
 		public void setPosX(double posX) {
 			super.setPosX(posX);
 			miGrafico.setLocation((int) posX, (int) posY);
-			
+			miGrafico.repaint();
 		}
 
 		@Override

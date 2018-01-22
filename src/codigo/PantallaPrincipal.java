@@ -40,18 +40,36 @@ public class PantallaPrincipal extends JFrame
 				// Mover coche
 			posible = false;
 			
-				for (int i = 0; i<Principal.growUp; i++)
-				{
-					try {
-						Principal.miBloque[i].mueveX();
-						Principal.miBloque[i].mueveY();
-						if(i!=0)	Principal.miBloque[i].setDireccionActual(Principal.miBloque[i-1].miDireccionActual);
-						
-						Thread.sleep(5);
-					} catch (Exception e) {
-					}
-				}
+//				for (int i = 0; i<Principal.growUp; i++)
+//				{
+//					try {
+//						Principal.miBloque[i].mueveX();
+//						Principal.miBloque[i].mueveY();
+//						if(i!=0)	Principal.miBloque[i].setDireccionActual(Principal.miBloque[i-1].miDireccionActual);
+//						
+//						Thread.sleep(5);
+//					} catch (Exception e) {
+//					}
+//				}
+//			
+			double xAnterior = Principal.miBloque[0].getPosX();
+			double yAnterior = Principal.miBloque[0].getPosY();
+			
+			Principal.miBloque[0].mueveX();
+			Principal.miBloque[0].mueveY();
+			
+			for (int i = 1; i<Principal.growUp; i++)
+			{
+				double xGuardado = Principal.miBloque[i].getPosX();
+				double yGuardado = Principal.miBloque[i].getPosY();
 				
+				Principal.miBloque[i].setPosicion(xAnterior, yAnterior);
+				xAnterior = xGuardado;
+				yAnterior = yGuardado;
+			}
+				
+				
+			
 			posible = true;
 				// Chequear choques
 				if (Principal.miBloque[0].getPosX() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosX()>Principal.pPrincipal.getWidth()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
@@ -88,7 +106,7 @@ public class PantallaPrincipal extends JFrame
 				}
 				// Dormir el hilo 40 milisegundos
 				try {
-					Thread.sleep( 40);
+					Thread.sleep(200);
 				} catch (Exception e) {
 				}
 			}

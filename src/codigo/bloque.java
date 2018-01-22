@@ -68,17 +68,17 @@ public class bloque
 	public void mueveX( ) 
 	{
 
-		if(miDireccionActual==0|| miDireccionActual==180)
+		if(miDireccionActual==0 || miDireccionActual==180)
 		{
-		setPosX(posX+(5*Math.cos(miDireccionActual/180.0*Math.PI)));
+		setPosX(posX+(30*Math.cos(miDireccionActual/180.0*Math.PI)));
 		}
 	}
 	public void mueveY( ) 
 	{
 		
-		if(miDireccionActual==270|| miDireccionActual==90)
+		if(miDireccionActual==270 || miDireccionActual==90)
 		{
-		setPosY(posY+(5*-Math.sin(miDireccionActual/180.0*Math.PI)));
+		setPosY(posY+(30*-Math.sin(miDireccionActual/180.0*Math.PI)));
 
 		}
 	}

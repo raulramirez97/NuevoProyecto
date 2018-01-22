@@ -22,7 +22,7 @@ public class manzana extends JLabel
 	public manzana() 
 	{
 		r= new Random();
-		posX = r.nextInt(700);
+		posX = r.nextInt(700); // PENDIENTE CAMBIAR a recibir param
 		posY = r.nextInt(500);
 		
 		setLocation(posX, posY);

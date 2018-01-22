@@ -21,8 +21,7 @@ import javax.swing.JPanel;
 	public class JLabelBloque extends JLabel 
 	{
 		private static final long serialVersionUID = 1L;  // Para serialización
-		public static final int TAMANYO_BLOQUE= 30; // píxels (igual ancho que algo)
-		public static final int RADIO_ESFERA_BLOQUE = 10;		
+		public static final int TAMANYO_BLOQUE= 30; // píxels (igual ancho que algo)	
 		ImageIcon icono;
 		
 		//TODO: Hay que reducir la imagen a 20 pixels. Ahora mismo solo se ve parte de la imagen, hay que reducir!!!!
