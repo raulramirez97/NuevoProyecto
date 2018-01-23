@@ -212,7 +212,7 @@ class PantallaInicio extends JFrame
 					
 					miVentana.creaBloque();
 					miVentana.setVisible( true );
-					
+					BD.conexion();
 
 					
 					miVentana1.miHilo = miVentana1.new MiRunnable();  // Sintaxis de new para clase interna
@@ -393,6 +393,7 @@ class GameOver  extends JFrame {
 protected static JButton retry;
 //protected static JButton salir;
 protected static JButton estadisticas;
+protected static JButton close;
 JPanel panel;
 	
 	public GameOver() 
@@ -401,6 +402,9 @@ JPanel panel;
 
 		estadisticas = new JButton("Estadisticas");
 		panel = new JPanel();
+		
+		close = new JButton("Cerrar");
+		close.setVisible(true);
 		
 		
 		retry.setVisible(true);
@@ -413,6 +417,7 @@ JPanel panel;
 		panel.add(retry);
 
 		panel.add(estadisticas);
+		panel.add(close);
 		
 
 		retry.addActionListener( new ActionListener() {
@@ -452,6 +457,19 @@ JPanel panel;
 				// TODO Auto-generated method stub
 				Estadisticas pantalla = new Estadisticas();
 				pantalla.setVisible(true);
+				
+			}
+			
+		});
+		
+		close.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				// TODO Auto-generated method stub
+				System.exit(0);
+				BD.finConexion();
 				
 			}
 			

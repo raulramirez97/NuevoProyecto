@@ -77,6 +77,9 @@ public class PantallaPrincipal extends JFrame
 					
 					OperacionesGuardado.RegistrarJugador(Nombre, puntuacion, tiempofinal);
 					logger.info("El juego ha acabado");
+					BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
+
+
 					
 					System.out.println("La puntuación es de: " + puntuacion);
 					
@@ -93,6 +96,7 @@ public class PantallaPrincipal extends JFrame
 					// Espejo vertical si choca en Y
 					OperacionesGuardado.RegistrarJugador(Nombre, puntuacion, tiempofinal);
 					logger.info("El juego ha acabado");
+					BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
 					
 					System.out.println("La puntuación es de: " + puntuacion);
 					
