@@ -2,11 +2,15 @@ package codigo;
 
 
 import java.awt.Point;
+import java.util.Date;
 import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+
+
 import java.util.logging.*;
 
 public class PantallaPrincipal extends JFrame
@@ -22,6 +26,7 @@ public class PantallaPrincipal extends JFrame
 	boolean posible = true;
 	int puntuacion = 0;
 	String tiempofinal;
+	
 	
 	/** Constructor de la ventana de juego. Crea y devuelve la ventana inicializada
 	 * sin coches dentro
@@ -75,7 +80,7 @@ public class PantallaPrincipal extends JFrame
 				if (Principal.miBloque[0].getPosX() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosX()>Principal.pPrincipal.getWidth()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
 					
 					
-					
+					RegistrarJugador(Nombre, puntuacion, tiempofinal);
 					logger.info("El juego ha acabado");
 					BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
 
@@ -94,6 +99,7 @@ public class PantallaPrincipal extends JFrame
 				if (Principal.miBloque[0].getPosY() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosY()>Principal.pPrincipal.getHeight()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
 					// Espejo vertical si choca en Y
 					
+					RegistrarJugador(Nombre, puntuacion, tiempofinal);
 					logger.info("El juego ha acabado");
 					BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
 					
@@ -113,6 +119,7 @@ public class PantallaPrincipal extends JFrame
 					if (Principal.miBloque[0].getPosX()==Principal.miBloque[i].getPosX()&&Principal.miBloque[0].getPosY()==Principal.miBloque[i].getPosY())
 					{
 						
+						RegistrarJugador(Nombre, puntuacion, tiempofinal);
 						logger.info("El juego ha acabado");
 						BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
 						
@@ -134,6 +141,14 @@ public class PantallaPrincipal extends JFrame
 			}
 		}
 		
+		public void RegistrarJugador(String nick, int puntuacion, String tiempo) 
+		{
+			Player a;
+			
+			a = new Player (nick, puntuacion, tiempo);	
+			
+		}
+
 		/** Ordena al hilo detenerse en cuanto sea posible
 		 */
 		public void acaba() 
@@ -297,5 +312,7 @@ public class PantallaPrincipal extends JFrame
 		public void acaba() {
 			sigo3 = false;
 		}
+		
+	
 	};
 }

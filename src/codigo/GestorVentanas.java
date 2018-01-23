@@ -16,6 +16,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -173,6 +174,7 @@ class PantallaInicio extends JFrame
 	JTextField user;
 	protected static JButton jugar;
 	JLabel usuario;
+	Date fecha;
 
 	JPanel panel;
 	
@@ -211,6 +213,7 @@ class PantallaInicio extends JFrame
 					Nombre=user.getText();
 					Principal miVentana = new Principal();
 					PantallaPrincipal miVentana1 = new PantallaPrincipal();
+					
 					
 					miVentana.creaBloque();
 					miVentana.setVisible( true );
