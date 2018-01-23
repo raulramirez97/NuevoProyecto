@@ -108,6 +108,25 @@ public class PantallaPrincipal extends JFrame
 					miHilo3.acaba();
 					
 				}
+				
+				for (int i = 1; i < Principal.growUp;i++)
+				{
+					if (Principal.miBloque[0].getPosX()==Principal.miBloque[i].getPosX()&&Principal.miBloque[0].getPosY()==Principal.miBloque[i].getPosY())
+					{
+						OperacionesGuardado.RegistrarJugador(Nombre, puntuacion, tiempofinal);
+						logger.info("El juego ha acabado");
+						BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
+						
+						System.out.println("La puntuación es de: " + puntuacion);
+						
+						GestorVentanas.hacerVisible( GameOver.class, true, 0);
+						GestorVentanas.ocultar( Principal.class, 0 );
+						
+						miHilo.acaba();
+						miHilo2.acaba();
+						miHilo3.acaba();
+					}
+				}
 				// Dormir el hilo 40 milisegundos
 				try {
 					Thread.sleep(200);
@@ -158,7 +177,7 @@ public class PantallaPrincipal extends JFrame
 				}
 				
 				
-				if(Principal.miManzana.getLocation().distance(Principal.miBloque[0].getPosX(), Principal.miBloque[0].getPosY()) <38)
+				if(Principal.miManzana.getLocation().distance(Principal.miBloque[0].getPosX(), Principal.miBloque[0].getPosY()) <150)
 				{	
 					P = RecursividadManzana();
 					
