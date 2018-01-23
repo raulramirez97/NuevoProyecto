@@ -14,6 +14,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 import codigo.GameOver.Estadisticas;
+import codigo.PantallaPrincipal.MiRunnable;
 
 
 ///** Clase para gestionar visibilización de ventanas de forma global.
@@ -283,7 +285,7 @@ class Principal extends JFrame
 			
 			setSize( 850, 750);
 			
-			pPrincipal.addKeyListener( new KeyAdapter() {
+			this.addKeyListener( new KeyAdapter() {
 				@Override
 				public void keyPressed(KeyEvent e) {
 					
@@ -348,14 +350,7 @@ class Principal extends JFrame
 				}
 				}
 			});
-			pPrincipal.setFocusable(true);
-			pPrincipal.requestFocus();
-			pPrincipal.addFocusListener( new FocusAdapter() {
-				@Override
-				public void focusLost(FocusEvent e) {
-					pPrincipal.requestFocus();
-				}
-			});
+			
 			// Cierre del hilo al cierre de la ventana
 			addWindowListener( new WindowAdapter() {
 				@Override
@@ -365,6 +360,8 @@ class Principal extends JFrame
 						miHilo.acaba();
 						miHilo2.acaba();
 						miHilo3.acaba();
+						
+						BD.finConexion();
 					}
 					
 				}
@@ -398,12 +395,20 @@ JPanel panel;
 	
 	public GameOver() 
 	{
+		setSize(300, 150);
+		setLocation(400, 150);
+		setTitle( "Game Over" );
+		setResizable(false);
+		
 		retry =new JButton("Volver a jugar");
-
+		retry.setBounds(70, 50, 60, 20);
+		
 		estadisticas = new JButton("Estadisticas");
+		estadisticas.setBounds(70, 90, 60, 20);
 		panel = new JPanel();
 		
 		close = new JButton("Cerrar");
+		close.setBounds(70, 130, 60, 20);
 		close.setVisible(true);
 		
 		
@@ -415,11 +420,9 @@ JPanel panel;
 		add(panel, BorderLayout.CENTER);
 		
 		panel.add(retry);
-
 		panel.add(estadisticas);
 		panel.add(close);
 		
-
 		retry.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
@@ -462,25 +465,76 @@ JPanel panel;
 			
 		});
 		
+
+		
 		close.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				// TODO Auto-generated method stub
+				
 				System.exit(0);
 				BD.finConexion();
 				
 			}
 			
+		
 		});
 		
 
+		this.addWindowListener(new WindowListener ()
+				{
+
+					@Override
+					public void windowActivated(WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void windowClosed(WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void windowClosing(WindowEvent arg0) 
+					{
+						System.exit(0);
+						
+					}
+
+					@Override
+					public void windowDeactivated(WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void windowDeiconified(WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void windowIconified(WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void windowOpened(WindowEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+			
+				});
 		
 		
-		setTitle( "Game Over" );
-		setSize( 400, 300 );
+		
 	}
+	
 	
 	public static class Estadisticas extends JFrame
 	{

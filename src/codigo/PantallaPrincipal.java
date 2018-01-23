@@ -89,7 +89,6 @@ public class PantallaPrincipal extends JFrame
 					miHilo.acaba();
 					miHilo2.acaba();
 					miHilo3.acaba();
-				
 				}
 				// Se comprueba tanto X como Y porque podría a la vez chocar en las dos direcciones
 				if (Principal.miBloque[0].getPosY() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosY()>Principal.pPrincipal.getHeight()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
@@ -120,7 +119,7 @@ public class PantallaPrincipal extends JFrame
 						System.out.println("La puntuación es de: " + puntuacion);
 						
 						GestorVentanas.hacerVisible( GameOver.class, true, 0);
-						GestorVentanas.ocultar( Principal.class, 0 );
+						GestorVentanas.ocultar( Principal.class, 1 );
 						
 						miHilo.acaba();
 						miHilo2.acaba();
@@ -177,7 +176,7 @@ public class PantallaPrincipal extends JFrame
 				}
 				
 				
-				if(Principal.miManzana.getLocation().distance(Principal.miBloque[0].getPosX(), Principal.miBloque[0].getPosY()) <150)
+				if(Principal.miManzana.getLocation().distance(Principal.miBloque[0].getPosX(), Principal.miBloque[0].getPosY()) < 150)
 				{	
 					P = RecursividadManzana();
 					
