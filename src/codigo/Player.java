@@ -21,19 +21,20 @@ import java.util.Date;
 		private String nick;
 		private int puntuacion;
 		private String tiempo;
-		private Date fecha;
+		//private Date fecha;
+		private String fecha;
 		
 		public Player()
 		{
 			
 		}
 		
-		public Player (String nick, int puntuacion, String tiempo)
+		public Player (String nick, int puntuacion, String tiempo, String fecha)
 		{
 			this.nick=nick;
 			this.puntuacion=puntuacion;
 			this.tiempo=tiempo;
-			this.fecha = new Date();
+			this.fecha = fecha;
 		}
 		
 
@@ -61,11 +62,11 @@ import java.util.Date;
 			this.tiempo = tiempo;
 		}
 		
-		public Date getFecha() {
+		public String getFecha() {
 			return fecha;
 		}
 
-		public void setFecha(Date fecha) {
+		public void setFecha(String fecha) {
 			this.fecha = fecha;
 	
 		}

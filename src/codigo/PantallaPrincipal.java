@@ -2,6 +2,7 @@ package codigo;
 
 
 import java.awt.Point;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -79,10 +80,15 @@ public class PantallaPrincipal extends JFrame
 				// Chequear choques
 				if (Principal.miBloque[0].getPosX() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosX()>Principal.pPrincipal.getWidth()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
 					
+					Date fechayHora = new Date(System.currentTimeMillis());
+					SimpleDateFormat formato = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );						
 					
-					RegistrarJugador(Nombre, puntuacion, tiempofinal);
+					String fecha = formato.format(fechayHora);
+					
+					RegistrarJugador(Nombre, puntuacion, tiempofinal, fecha);
 					logger.info("El juego ha acabado");
-					BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
+					//BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
+					clsBD.InsertEstadisticas(Nombre, puntuacion, tiempofinal, fecha);
 
 
 					
@@ -99,9 +105,15 @@ public class PantallaPrincipal extends JFrame
 				if (Principal.miBloque[0].getPosY() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosY()>Principal.pPrincipal.getHeight()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
 					// Espejo vertical si choca en Y
 					
-					RegistrarJugador(Nombre, puntuacion, tiempofinal);
+					Date fechayHora = new Date(System.currentTimeMillis());
+					SimpleDateFormat formato = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );						
+					
+					String fecha = formato.format(fechayHora);
+					
+					RegistrarJugador(Nombre, puntuacion, tiempofinal, fecha);
 					logger.info("El juego ha acabado");
-					BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
+					//BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
+					clsBD.InsertEstadisticas(Nombre, puntuacion, tiempofinal, fecha);
 					
 					System.out.println("La puntuación es de: " + puntuacion);
 					
@@ -119,9 +131,16 @@ public class PantallaPrincipal extends JFrame
 					if (Principal.miBloque[0].getPosX()==Principal.miBloque[i].getPosX()&&Principal.miBloque[0].getPosY()==Principal.miBloque[i].getPosY())
 					{
 						
-						RegistrarJugador(Nombre, puntuacion, tiempofinal);
+						Date fechayHora = new Date(System.currentTimeMillis());
+						SimpleDateFormat formato = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );						
+						
+						String fecha = formato.format(fechayHora);
+						
+						
+						RegistrarJugador(Nombre, puntuacion, tiempofinal, fecha);
 						logger.info("El juego ha acabado");
-						BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
+						//BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
+						clsBD.InsertEstadisticas(Nombre, puntuacion, tiempofinal, fecha);
 						
 						System.out.println("La puntuación es de: " + puntuacion);
 						
@@ -141,11 +160,11 @@ public class PantallaPrincipal extends JFrame
 			}
 		}
 		
-		public void RegistrarJugador(String nick, int puntuacion, String tiempo) 
+		public void RegistrarJugador(String nick, int puntuacion, String tiempo, String fecha) 
 		{
 			Player a;
 			
-			a = new Player (nick, puntuacion, tiempo);	
+			a = new Player (nick, puntuacion, tiempo, fecha);	
 			
 		}
 
