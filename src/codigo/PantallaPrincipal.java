@@ -75,7 +75,7 @@ public class PantallaPrincipal extends JFrame
 				if (Principal.miBloque[0].getPosX() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosX()>Principal.pPrincipal.getWidth()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
 					
 					
-					OperacionesGuardado.RegistrarJugador(Nombre, puntuacion, tiempofinal);
+					
 					logger.info("El juego ha acabado");
 					BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
 
@@ -93,7 +93,7 @@ public class PantallaPrincipal extends JFrame
 				// Se comprueba tanto X como Y porque podría a la vez chocar en las dos direcciones
 				if (Principal.miBloque[0].getPosY() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosY()>Principal.pPrincipal.getHeight()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
 					// Espejo vertical si choca en Y
-					OperacionesGuardado.RegistrarJugador(Nombre, puntuacion, tiempofinal);
+					
 					logger.info("El juego ha acabado");
 					BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
 					
@@ -112,7 +112,7 @@ public class PantallaPrincipal extends JFrame
 				{
 					if (Principal.miBloque[0].getPosX()==Principal.miBloque[i].getPosX()&&Principal.miBloque[0].getPosY()==Principal.miBloque[i].getPosY())
 					{
-						OperacionesGuardado.RegistrarJugador(Nombre, puntuacion, tiempofinal);
+						
 						logger.info("El juego ha acabado");
 						BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
 						
@@ -176,7 +176,7 @@ public class PantallaPrincipal extends JFrame
 				}
 				
 				
-				if(Principal.miManzana.getLocation().distance(Principal.miBloque[0].getPosX(), Principal.miBloque[0].getPosY()) < 150)
+				if(Principal.miManzana.getLocation().distance(Principal.miBloque[0].getPosX(), Principal.miBloque[0].getPosY()) < 30)
 				{	
 					P = RecursividadManzana();
 					
@@ -211,7 +211,7 @@ public class PantallaPrincipal extends JFrame
 			
 			for(int i = 0; i<Principal.growUp; i++)
 			{
-				if(Principal.miManzana.getLocation().distance(Principal.miBloque[i].getPosX(), Principal.miBloque[i].getPosY()) < 23)
+				if(new Point(apple_posX, apple_posY).distance(Principal.miBloque[i].getPosX(), Principal.miBloque[i].getPosY()) < 23)
 				{
 					RecursividadManzana();
 				} 

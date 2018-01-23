@@ -547,21 +547,14 @@ JPanel panel;
 		
 		public Estadisticas ()
 		{
-			ArrayList<Player> ListaJugadores;
-			String Players = null;
-			ListaJugadores = OperacionesGuardado.LeerFichero();
+			
 			setTitle ("Estadisticas");
 			setSize (400,200);
 			
 			PanelTexto = new JTextPane ();
 			this.add(PanelTexto, BorderLayout.CENTER);
 			
-			for (Player aux: ListaJugadores)
-			{
-				Players = Players + "\n" + aux.toString();
-			}
-			
-			PanelTexto.setText(Players);
+		
 			Cerrar = new JButton ("Cerrar");
 			this.add(PanelTexto, BorderLayout.SOUTH);
 			PanelTexto.setVisible(true);
