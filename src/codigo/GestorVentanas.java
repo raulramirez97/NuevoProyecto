@@ -22,11 +22,13 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
+import COMUN.clsUsuarioVacio;
 import codigo.GameOver.Estadisticas;
 import codigo.PantallaPrincipal.MiRunnable;
 
@@ -178,7 +180,7 @@ class PantallaInicio extends JFrame
 
 	JPanel panel;
 	
-	public PantallaInicio() 
+	public PantallaInicio() throws clsUsuarioVacio
 	{
 	user =new JTextField();
 	user.setBounds(new Rectangle(50,25,100,25));
@@ -211,29 +213,37 @@ class PantallaInicio extends JFrame
 				public void actionPerformed(ActionEvent arg0) 
 				{
 					Nombre=user.getText();
-					Principal miVentana = new Principal();
-					PantallaPrincipal miVentana1 = new PantallaPrincipal();
+					
+					if (Nombre != null)
+					{	
+						Principal miVentana = new Principal();
+						PantallaPrincipal miVentana1 = new PantallaPrincipal();
 					
 					
-					miVentana.creaBloque();
-					miVentana.setVisible( true );
-					BD.conexion();
+						miVentana.creaBloque();
+						miVentana.setVisible( true );
+						BD.conexion();
 
 					
-					miVentana1.miHilo = miVentana1.new MiRunnable();  // Sintaxis de new para clase interna
+						miVentana1.miHilo = miVentana1.new MiRunnable();  // Sintaxis de new para clase interna
 					
-					Thread nuevoHilo = new Thread( miVentana1.miHilo );
-					nuevoHilo.start();
+						Thread nuevoHilo = new Thread( miVentana1.miHilo );
+						nuevoHilo.start();
 					
-					miVentana1.miHilo2 = miVentana1.new RandomApple();
+						miVentana1.miHilo2 = miVentana1.new RandomApple();
 					
-					Thread nuevoHilo2 = new Thread( miVentana1.miHilo2 );
-					nuevoHilo2.start();
+						Thread nuevoHilo2 = new Thread( miVentana1.miHilo2 );
+						nuevoHilo2.start();
 					
-					miVentana1.miHilo3 = miVentana1.new cronometro();
+						miVentana1.miHilo3 = miVentana1.new cronometro();
 					
-					Thread nuevoHilo3 = new Thread (miVentana1.miHilo3 );
-					nuevoHilo3.start();
+						Thread nuevoHilo3 = new Thread (miVentana1.miHilo3 );
+						nuevoHilo3.start();
+				
+					} else  
+					{
+						throw new clsUsuarioVacio();
+					}
 				
 	
 				}
