@@ -219,10 +219,13 @@ class PantallaInicio extends JFrame
 						Principal miVentana = new Principal();
 						PantallaPrincipal miVentana1 = new PantallaPrincipal();
 					
-					
+						
 						miVentana.creaBloque();
 						miVentana.setVisible( true );
 						BD.conexion();
+						
+						String es = "estadisticas";
+						clsBD.initBD(es);
 
 					
 						miVentana1.miHilo = miVentana1.new MiRunnable();  // Sintaxis de new para clase interna
@@ -375,6 +378,7 @@ class Principal extends JFrame
 						miHilo3.acaba();
 						
 						BD.finConexion();
+						clsBD.close();
 					}
 					
 				}
@@ -486,9 +490,10 @@ JPanel panel;
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				// TODO Auto-generated method stub
-				
-				System.exit(0);
 				BD.finConexion();
+				clsBD.close();
+				System.exit(0);
+				
 				
 			}
 			
