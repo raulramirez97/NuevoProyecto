@@ -154,7 +154,7 @@ public class PantallaPrincipal extends JFrame
 				}
 				
 				
-				if(Principal.miManzana.getLocation().distance(Principal.miBloque[0].getPosX(), Principal.miBloque[0].getPosY()) < 30)
+				if(Principal.miManzana.getLocation().distance(Principal.miBloque[0].getPosX(), Principal.miBloque[0].getPosY()) <38)
 				{	
 					P = RecursividadManzana();
 					
