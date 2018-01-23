@@ -77,7 +77,7 @@ public class clsBD
 	//Crear tablas 
 	
 	
-	public static void crearTablaXXX() 
+	public static void crearTablaEstadisticas() 
 	{
 		if (statement==null) return;
 		try
