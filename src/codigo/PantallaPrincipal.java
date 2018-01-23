@@ -136,46 +136,72 @@ public class PantallaPrincipal extends JFrame
 			Random r;
 			int  apple_posX;
 			int  apple_posY;
+			Point P;
 			
 		
 			
 			// Bucle principal forever hasta que se pare el juego...
 			while (true) 
 			{
-				r= new Random();
-				apple_posX = r.nextInt(7);
-				apple_posY = r.nextInt(5);	
-				
-				
-				if(Principal.miManzana==null)
+				if(Principal.miManzana == null)
 				{
-				Principal.miManzana = new manzana();
-				Principal.miManzana.setLocation(apple_posX*50, apple_posY*50+100);
-				Principal.pPrincipal.add(Principal.miManzana);
-				System.out.println("Aparece la manzana");
+					r= new Random();
+					apple_posX = r.nextInt(Principal.pPrincipal.getWidth());
+					apple_posY = r.nextInt(Principal.pPrincipal.getHeight());
+					
+					Principal.miManzana = new manzana(apple_posX,apple_posY);
+					Principal.pPrincipal.add(Principal.miManzana);
 				}
 				
 				
-				if(Principal.miManzana.getLocation().distance(Principal.miBloque[0].getPosX(), Principal.miBloque[0].getPosY()) < 15)
+				if(Principal.miManzana.getLocation().distance(Principal.miBloque[0].getPosX(), Principal.miBloque[0].getPosY()) < 30)
 				{	
-				Principal.miManzana.setLocation(apple_posX*50, apple_posY*50+100);
-				Principal.pPrincipal.add(Principal.miManzana);
-				growUp();
-				puntuacion = puntuacion + 1;
-				
+					P = RecursividadManzana();
+					
+					Principal.miManzana.setLocation(P);
+					Principal.pPrincipal.add(Principal.miManzana);
+					growUp();
+					puntuacion = puntuacion + 1;
 				}
 			
 				
 				// Dormir el hilo 40 milisegundos
 				try 
 				{	
-				Thread.sleep( 10 );
+				Thread.sleep( 33 );
 				} catch (Exception e) {
 				}
 				
 			}
 			
 		}
+		
+		public Point RecursividadManzana()
+		{
+			Point P;
+			Random r;
+			int  apple_posX;
+			int  apple_posY;
+			
+			r= new Random();
+			apple_posX = r.nextInt(Principal.pPrincipal.getWidth());
+			apple_posY = r.nextInt(Principal.pPrincipal.getHeight());
+			
+			for(int i = 0; i<Principal.growUp; i++)
+			{
+				if(Principal.miManzana.getLocation().distance(Principal.miBloque[i].getPosX(), Principal.miBloque[i].getPosY()) < 23)
+				{
+					RecursividadManzana();
+				} 
+			}
+			
+			
+			P = new Point(apple_posX, apple_posY);
+			
+			return P;
+		}
+		
+		
 		/** Ordena al hilo detenerse en cuanto sea posible
 		 */
 		public void acaba() 

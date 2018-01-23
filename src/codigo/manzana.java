@@ -14,19 +14,19 @@ import javax.swing.JLabel;
 
 public class manzana extends JLabel
 {
-	private Random r;
 	private int posX;
 	private int posY;
 	ImageIcon icono2;
 	
-	public manzana() 
+	public manzana(int posManzanaX, int posManzanaY) 
 	{
-		r= new Random();
-		posX = r.nextInt(700); // PENDIENTE CAMBIAR a recibir param
-		posY = r.nextInt(500);
+		posX = posManzanaX;
+		posY = posManzanaY;
 		
 		setLocation(posX, posY);
 		setSize(30, 30);
+		this.setHorizontalAlignment(JLabel.CENTER);
+		this.setVerticalAlignment(JLabel.CENTER);
 		
 		try
 		{

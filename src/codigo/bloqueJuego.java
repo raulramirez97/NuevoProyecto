@@ -12,6 +12,8 @@ public class bloqueJuego extends bloque
 		public bloqueJuego() 
 		{
 			miGrafico = new JLabelBloque();
+			miGrafico.setVerticalAlignment(JLabel.CENTER);
+			miGrafico.setHorizontalAlignment(JLabel.CENTER);
 		}
 		
 		/** Devuelve el JLabel gráfico asociado al coche de juego
