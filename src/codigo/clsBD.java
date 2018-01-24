@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import javax.swing.JOptionPane;
@@ -101,7 +102,7 @@ public class clsBD
 	{
 				try 
 				{					
-					String sentSQL = "insert into XXX values(" +
+					String sentSQL = "insert into estadisticas values(" +
 							"'" + nombre + "', " +
 							"'" + puntuacion + "', " +
 							"'" + tiempo + "', " +
@@ -117,7 +118,7 @@ public class clsBD
 				}
 	}
 	
-	public static boolean UpdateXXX (String nombre, int puntuacion, String tiempo, String fecha)
+	public static boolean UpdateEstadisticas (String nombre, int puntuacion, String tiempo, String fecha)
 	{
 		try 
 		{
@@ -139,14 +140,14 @@ public class clsBD
 		}
 	}
 	
-	public static XXX LeerXXX( Atributo identificativo)
+	public static ArrayList<Player> LeerEstadisticas( String fecha)
 	{			
-		int retorno = 0; //Aquí tendréis que hacer una variable del tipo de lo que vayáis a devolver (si fuera precio, double; si fuera toda la fila, ArrayList etc.) 
+		ArrayList<Player> retorno = null; //Aquí tendréis que hacer una variable del tipo de lo que vayáis a devolver (si fuera precio, double; si fuera toda la fila, ArrayList etc.) 
 		// Para inicializarlo, hay que inicializarlo con un valor que sepamos que si está en la tabla nunca tendrá (por ejemplo, precio = 0, ArrayList <> = null etc.)
 		 	try 
 			{
 				//Select * si necesitáis todo lo de la tabala (el String, el boolean y el int) y si no, poner el nombre de la columna después del select (pe. select precio from ...)
-				String sentSQL = "select XXX from estadisticas where XXX = '"+XXX+"'";
+				String sentSQL = "select* from estadisticas where fecha = '" + fecha+ "'";
 				rs=statement.executeQuery( sentSQL );
 				
 				if(rs!=null)
@@ -195,4 +196,3 @@ public class clsBD
 					return false;
 				}
 	}
-}
