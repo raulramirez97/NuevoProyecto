@@ -90,9 +90,11 @@ public class PantallaPrincipal extends JFrame
 					//BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
 					
 					clsBD.InsertEstadisticas(a.getNick(), a.getPuntuacion(), a.getTiempo(), fecha);
+					
+					logger.info("El usuario se ha registrado");
 
 					
-					System.out.println("La puntuación es de: " + puntuacion);
+					logger.info("La puntuación es de: " + puntuacion);
 					
 					GestorVentanas.hacerVisible( GameOver.class, true, 0);
 					GestorVentanas.ocultar( Principal.class, 0 );
@@ -115,7 +117,10 @@ public class PantallaPrincipal extends JFrame
 					
 					clsBD.InsertEstadisticas(a.getNick(), a.getPuntuacion(), a.getTiempo(), fecha);
 					
-					System.out.println("La puntuación es de: " + puntuacion);
+					logger.info("El usuario se ha registrado");
+
+					
+					logger.info("La puntuación es de: " + puntuacion);
 					
 					GestorVentanas.hacerVisible( GameOver.class, true, 0);
 					GestorVentanas.ocultar( Principal.class, 0 );
@@ -143,8 +148,11 @@ public class PantallaPrincipal extends JFrame
 						//BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
 						
 						clsBD.InsertEstadisticas(a.getNick(), a.getPuntuacion(), a.getTiempo(), fecha);
+
+						logger.info("El usuario se ha registrado");
+
 						
-						System.out.println("La puntuación es de: " + puntuacion);
+						logger.info("La puntuación es de: " + puntuacion);
 						
 						GestorVentanas.hacerVisible( GameOver.class, true, 0);
 						GestorVentanas.ocultar( Principal.class, 1 );
@@ -271,6 +279,8 @@ public class PantallaPrincipal extends JFrame
 	class cronometro implements Runnable
 	{
 		boolean sigo3 = true;
+		private Logger logger = Logger.getLogger( MiRunnable.class.getName());
+		
 		
 		@Override
 		public void run()
@@ -302,27 +312,27 @@ public class PantallaPrincipal extends JFrame
 					if (Principal.miBloque[0].getPosX() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosX()>Principal.pPrincipal.getWidth()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
 						// Espejo horizontal si choca en X
 						
-						System.out.println( "Game Over");
 						sigo3 = false;
-						 System.out.println("El tiempo final es de: "+ tiempofinal);
-						
 						miHilo3.acaba();
 					
 					}
 					// Se comprueba tanto X como Y porque podría a la vez chocar en las dos direcciones
 					else if (Principal.miBloque[0].getPosY() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosY()>Principal.pPrincipal.getHeight()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
 						// Espejo vertical si choca en Y
-						System.out.println( "Game Over");
+						
 						sigo3 = false;
-						 System.out.println("El tiempo final es de: "+ tiempofinal);
+						 
+						
 
 						miHilo3.acaba();
 					}
 					
 					
-			 System.out.println(tiempofinal);
 	         Thread.sleep(99);
 	         }   
+			
+			logger.info("El tiempo es de: " + tiempofinal);
+			
 			
 			
 	     } catch (Exception ex) 

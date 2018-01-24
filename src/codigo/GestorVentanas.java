@@ -451,26 +451,24 @@ JPanel panel;
 			{
 				Principal miVentana = new Principal();
 				PantallaPrincipal miVentana1 = new PantallaPrincipal();
+						
+				
 				
 				miVentana.creaBloque();
 				miVentana.setVisible( true );
 				
-				
-				
-				// Crea el hilo de movimiento del coche y lo lanza
-				
 				miVentana1.miHilo = miVentana1.new MiRunnable();  // Sintaxis de new para clase interna
-				
+			
 				Thread nuevoHilo = new Thread( miVentana1.miHilo );
 				nuevoHilo.start();
-				
+			
 				miVentana1.miHilo2 = miVentana1.new RandomApple();
-				
+			
 				Thread nuevoHilo2 = new Thread( miVentana1.miHilo2 );
 				nuevoHilo2.start();
-				
+			
 				miVentana1.miHilo3 = miVentana1.new cronometro();
-				
+			
 				Thread nuevoHilo3 = new Thread (miVentana1.miHilo3 );
 				nuevoHilo3.start();
 			}
