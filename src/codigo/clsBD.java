@@ -140,26 +140,59 @@ public class clsBD
 		}
 	}
 	
-	public static ArrayList<Player> LeerEstadisticas( String fecha)
+	public static ArrayList<Player> LeerEstadisticas()
 	{			
-		ArrayList<Player> retorno = null; //Aquí tendréis que hacer una variable del tipo de lo que vayáis a devolver (si fuera precio, double; si fuera toda la fila, ArrayList etc.) 
+		ArrayList<Player> retorno = new ArrayList<Player>(); //Aquí tendréis que hacer una variable del tipo de lo que vayáis a devolver (si fuera precio, double; si fuera toda la fila, ArrayList etc.) 
 		// Para inicializarlo, hay que inicializarlo con un valor que sepamos que si está en la tabla nunca tendrá (por ejemplo, precio = 0, ArrayList <> = null etc.)
 		 	try 
 			{
 				//Select * si necesitáis todo lo de la tabala (el String, el boolean y el int) y si no, poner el nombre de la columna después del select (pe. select precio from ...)
-				String sentSQL = "select* from estadisticas where fecha = '" + fecha+ "'";
+				String sentSQL = "select * from estadisticas";
 				rs=statement.executeQuery( sentSQL );
 				
 				if(rs!=null)
 				{
-					String nombre = rs.getString("nombre"); //Si es una sola variable, rs.get<Tipo de la variable de retorno>
-					int puntuacion = rs.getInt("puntuacion");
-					String tiempoFinal = rs.getString("tiempo");
-					String fecha1 = rs.getString("fecha");
-					Player a = new Player (nombre, puntuacion, tiempoFinal, fecha);
-					retorno.add(a); //Si es un ArrayList, hacemos un get de cada uno de sus columnas y hacemos add de cada uno de ellos (tantos add como columnas haya)
+					while (rs.next())
+					{
+						String nombre = rs.getString("nombre"); //Si es una sola variable, rs.get<Tipo de la variable de retorno>
+						int puntuacion = rs.getInt("puntuacion");
+						String tiempoFinal = rs.getString("tiempo");
+						String fecha = rs.getString("fecha");
+						Player a = new Player (nombre, puntuacion, tiempoFinal, fecha);
+						retorno.add(a); //Si es un ArrayList, hacemos un get de cada uno de sus columnas y hacemos add de cada uno de ellos (tantos add como columnas haya)
+					}
+					rs.close();
 				}
-	
+				
+				return retorno;
+			}
+			catch (SQLException e) 
+			{
+				return retorno; //Si devuelve 0 es que ha entrado aquí
+			}	
+	}
+	public static Player LeerPlayer(String fecha)
+	{			
+		Player retorno = null; //Aquí tendréis que hacer una variable del tipo de lo que vayáis a devolver (si fuera precio, double; si fuera toda la fila, ArrayList etc.) 
+		// Para inicializarlo, hay que inicializarlo con un valor que sepamos que si está en la tabla nunca tendrá (por ejemplo, precio = 0, ArrayList <> = null etc.)
+		 	try 
+			{
+				//Select * si necesitáis todo lo de la tabala (el String, el boolean y el int) y si no, poner el nombre de la columna después del select (pe. select precio from ...)
+				String sentSQL = "select * from estadisticas where fecha = '" + fecha + "'";
+				rs=statement.executeQuery( sentSQL );
+				
+				if(rs!=null)
+				{
+					
+						String nombre = rs.getString("nombre"); //Si es una sola variable, rs.get<Tipo de la variable de retorno>
+						int puntuacion = rs.getInt("puntuacion");
+						String tiempoFinal = rs.getString("tiempo");
+						String fecha1 = rs.getString("fecha");
+						retorno = new Player (nombre, puntuacion, tiempoFinal, fecha1);
+						 //Si es un ArrayList, hacemos un get de cada uno de sus columnas y hacemos add de cada uno de ellos (tantos add como columnas haya)
+				}
+					
+				
 				return retorno;
 			}
 			catch (SQLException e) 
