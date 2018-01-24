@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.LineNumberInputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
@@ -120,12 +121,41 @@ public class GestorVentanas
 			}
 		}
 	}
+	
+	public static void cerrar ()
+	{
+		Principal Ventana1;
+		PantallaPrincipal Ventana2;
+		Ventana1 = (Principal) listaVentanas.get(2);
+		Ventana2 = (PantallaPrincipal) listaVentanas.get(3);
+		
+		Ventana2.miHilo.acaba();
+		Ventana2.miHilo2.acaba();
+		Ventana2.miHilo3.acaba();
+		
+		Ventana2.dispose();
+		Ventana1.dispose();
+		
+		listaVentanas.remove(3);
+		listaVentanas.remove(2);
+		
+		
+		Principal.pPrincipal.removeAll();
+		Principal.pPrincipal.repaint();
+		
+		Principal.growUp = 1;
+		Principal.creaBloque();
+		Principal.miManzana = null;
+		
+		
+		
+	}
 
 	
 	/* MÃ©todo de prueba */
 	public static void main (String s[]) {
 		add( new PantallaInicio() );
-		add( new Principal() );
+	
 		add( new GameOver() );
 		String es = "estadisticas";
 		clsBD.initBD(es);
@@ -218,15 +248,13 @@ class PantallaInicio extends JFrame
 					if (!Nombre.isEmpty())
 					{	
 						Principal miVentana = new Principal();
+						GestorVentanas.add(miVentana);
 						PantallaPrincipal miVentana1 = new PantallaPrincipal();
+						GestorVentanas.add(miVentana1);
 					
 						
 						miVentana.creaBloque();
 						miVentana.setVisible( true );
-						
-						
-						
-
 					
 						miVentana1.miHilo = miVentana1.new MiRunnable();  // Sintaxis de new para clase interna
 					
@@ -278,8 +306,6 @@ class Principal extends JFrame
 	PantallaPrincipal.MiRunnable miHilo = null;// Hilo del bucle principal de juego
 	PantallaPrincipal.RandomApple miHilo2 = null;
 	PantallaPrincipal.cronometro miHilo3 = null;
-	int num_casillas[][] = new int [17][15];
-	Point posicion = new Point(6, 8);
 	boolean posible = true;
 	static int growUp = 1;
 	/** Constructor de la ventana de juego. Crea y devuelve la ventana inicializada
@@ -390,7 +416,7 @@ class Principal extends JFrame
 			});
 		
 	}
-	public void creaBloque( ) 
+	public static void creaBloque( ) 
 	{
 //		// Crear y añadir el coche a la ventana
 		miBloque = new bloqueJuego[300];
@@ -449,14 +475,17 @@ JPanel panel;
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				Principal miVentana = new Principal();
-				PantallaPrincipal miVentana1 = new PantallaPrincipal();
-						
+				GestorVentanas.cerrar();
 				
+				Principal miVentana = new Principal();
+				GestorVentanas.add(miVentana);
+				PantallaPrincipal miVentana1 = new PantallaPrincipal();
+				GestorVentanas.add(miVentana1);
+			
 				
 				miVentana.creaBloque();
 				miVentana.setVisible( true );
-				
+			
 				miVentana1.miHilo = miVentana1.new MiRunnable();  // Sintaxis de new para clase interna
 			
 				Thread nuevoHilo = new Thread( miVentana1.miHilo );
@@ -471,6 +500,9 @@ JPanel panel;
 			
 				Thread nuevoHilo3 = new Thread (miVentana1.miHilo3 );
 				nuevoHilo3.start();
+				
+				
+				
 			}
 		});
 		estadisticas.addActionListener(new ActionListener(){

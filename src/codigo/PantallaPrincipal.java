@@ -211,11 +211,9 @@ public class PantallaPrincipal extends JFrame
 			{
 				if(Principal.miManzana == null)
 				{
-					r= new Random();
-					apple_posX = r.nextInt(Principal.pPrincipal.getWidth());
-					apple_posY = r.nextInt(Principal.pPrincipal.getHeight());
+					P = RecursividadManzana();
 					
-					Principal.miManzana = new manzana(apple_posX,apple_posY);
+					Principal.miManzana = new manzana(P.x,P.y);
 					Principal.pPrincipal.add(Principal.miManzana);
 				}
 				
@@ -255,7 +253,7 @@ public class PantallaPrincipal extends JFrame
 			
 			for(int i = 0; i<Principal.growUp; i++)
 			{
-				if(new Point(apple_posX, apple_posY).distance(Principal.miBloque[i].getPosX(), Principal.miBloque[i].getPosY()) < 23)
+				if(new Point(apple_posX, apple_posY).distance(Principal.miBloque[i].getPosX(), Principal.miBloque[i].getPosY()) < 150)
 				{
 					RecursividadManzana();
 				} 
