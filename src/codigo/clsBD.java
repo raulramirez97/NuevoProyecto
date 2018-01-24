@@ -152,8 +152,12 @@ public class clsBD
 				
 				if(rs!=null)
 				{
-					retorno = rs.getInt("XXX"); //Si es una sola variable, rs.get<Tipo de la variable de retorno>
-					retorno.add(rs.getInt("XXX")); //Si es un ArrayList, hacemos un get de cada uno de sus columnas y hacemos add de cada uno de ellos (tantos add como columnas haya)
+					String nombre = rs.getString("nombre"); //Si es una sola variable, rs.get<Tipo de la variable de retorno>
+					int puntuacion = rs.getInt("puntuacion");
+					String tiempoFinal = rs.getString("tiempo");
+					String fecha1 = rs.getString("fecha");
+					Player a = new Player (nombre, puntuacion, tiempoFinal, fecha);
+					retorno.add(a); //Si es un ArrayList, hacemos un get de cada uno de sus columnas y hacemos add de cada uno de ellos (tantos add como columnas haya)
 				}
 	
 				return retorno;
@@ -179,20 +183,20 @@ public class clsBD
 	}
 	
 //este podría llegar a entrar, aunque es menos probable que update. Si en algún momento veis que update no va bien, podéis hacer primero delete y luego insert otra vez.
-	public static boolean BorrarFila (Atributo que determine qué fila se debe borrar)
+	public static boolean BorrarFila (String fecha)
 	{
 		try 
 				{
-					//Borrando
-					int codArchivo=(Integer)ident;
-					String sentSQL = "DELETE FROM estadisticas WHERE XXX = "+XXX;
+					
+					String sentSQL = "DELETE FROM estadisticas WHERE fecha = "+ fecha;
 					int val = statement.executeUpdate( sentSQL );
 					if (val!=1) return false;   //Error de borrado
 					return true;//Borrado correctamente
 				}
 				catch (SQLException e) 
 				{
-					logger.log( Level.WARNING, e.getMessage(), e );
+					//logger.log( Level.WARNING, e.getMessage(), e );
 					return false;
 				}
 	}
+}

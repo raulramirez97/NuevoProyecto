@@ -127,6 +127,9 @@ public class GestorVentanas
 		add( new PantallaInicio() );
 		add( new Principal() );
 		add( new GameOver() );
+		String es = "estadisticas";
+		clsBD.initBD(es);
+		clsBD.crearTablaEstadisticas();
 		
 		try
 		{
@@ -180,7 +183,7 @@ class PantallaInicio extends JFrame
 
 	JPanel panel;
 	
-	public PantallaInicio() throws clsUsuarioVacio
+	public PantallaInicio()
 	{
 	user =new JTextField();
 	user.setBounds(new Rectangle(50,25,100,25));
@@ -206,15 +209,13 @@ class PantallaInicio extends JFrame
 	
 	panel.setLayout(null);
 	
-		if(usuario != null)
-		{
 			jugar.addActionListener( new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) 
 				{
 					Nombre=user.getText();
 					
-					if (Nombre != null)
+					if (!Nombre.isEmpty())
 					{	
 						Principal miVentana = new Principal();
 						PantallaPrincipal miVentana1 = new PantallaPrincipal();
@@ -222,10 +223,9 @@ class PantallaInicio extends JFrame
 						
 						miVentana.creaBloque();
 						miVentana.setVisible( true );
-						BD.conexion();
 						
-						String es = "estadisticas";
-						clsBD.initBD(es);
+						
+						
 
 					
 						miVentana1.miHilo = miVentana1.new MiRunnable();  // Sintaxis de new para clase interna
@@ -245,14 +245,19 @@ class PantallaInicio extends JFrame
 				
 					} else  
 					{
-						throw new clsUsuarioVacio();
+						try {
+							throw new clsUsuarioVacio();
+						} catch (clsUsuarioVacio e) 
+						{
+							JOptionPane.showMessageDialog((JButton) arg0.getSource(), e.getMessage());
+						}
 					}
 				
 	
 				}
 				
 			});
-		}
+		
 		
 		
 		
@@ -377,7 +382,7 @@ class Principal extends JFrame
 						miHilo2.acaba();
 						miHilo3.acaba();
 						
-						BD.finConexion();
+						//BD.finConexion();
 						clsBD.close();
 					}
 					
@@ -490,7 +495,7 @@ JPanel panel;
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				// TODO Auto-generated method stub
-				BD.finConexion();
+				
 				clsBD.close();
 				System.exit(0);
 				
@@ -520,6 +525,7 @@ JPanel panel;
 					public void windowClosing(WindowEvent arg0) 
 					{
 						System.exit(0);
+						clsBD.close();
 						
 					}
 

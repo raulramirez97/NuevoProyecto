@@ -5,6 +5,8 @@ package codigo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
@@ -21,21 +23,35 @@ import java.util.Date;
 		private String nick;
 		private int puntuacion;
 		private String tiempo;
-		//private Date fecha;
-		private String fecha;
+		private Date fecha;
+		
 		
 		public Player()
 		{
 			
 		}
 		
+		public Player (String nick, int puntuacion, String tiempo)
+		{
+			this.nick=nick;
+			this.puntuacion=puntuacion;
+			this.tiempo=tiempo;
+			this.fecha = new Date();
+		}
 		public Player (String nick, int puntuacion, String tiempo, String fecha)
 		{
 			this.nick=nick;
 			this.puntuacion=puntuacion;
 			this.tiempo=tiempo;
-			this.fecha = fecha;
+			SimpleDateFormat formato = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );
+			try {
+				this.fecha = formato.parse(fecha);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		
 		
 
 		public String getNick() {
@@ -62,11 +78,11 @@ import java.util.Date;
 			this.tiempo = tiempo;
 		}
 		
-		public String getFecha() {
+		public Date getFecha() {
 			return fecha;
 		}
 
-		public void setFecha(String fecha) {
+		public void setFecha(Date fecha) {
 			this.fecha = fecha;
 	
 		}
