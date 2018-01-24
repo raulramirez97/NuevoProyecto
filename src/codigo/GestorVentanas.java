@@ -568,17 +568,25 @@ JPanel panel;
 		private JTextPane PanelTexto;
 		private JButton Cerrar;
 		private JPanel panel1;
+		ArrayList<Player> jugadores = new ArrayList<Player>();
 		
 		public Estadisticas ()
 		{
 			
 			setTitle ("Estadisticas");
-			setSize (400,200);
+			setSize (800, 600);
 			
 			PanelTexto = new JTextPane ();
 			this.add(PanelTexto, BorderLayout.CENTER);
+			jugadores = clsBD.LeerEstadisticas();
+			String players = "";
 			
+			for (Player aux : jugadores)
+			{
+				players = players + "\n" + aux.toString() + "\n";
+			}
 		
+			PanelTexto.setText(players);
 			Cerrar = new JButton ("Cerrar");
 			this.add(PanelTexto, BorderLayout.SOUTH);
 			PanelTexto.setVisible(true);
