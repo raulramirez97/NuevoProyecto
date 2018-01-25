@@ -14,8 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-	/** Clase para visualizar un coche en Swing como un JLabel,
-	 *  con un gráfico específico de coche
+	/** Clase para visualizar un bloque de la serpiente en Swing como un JLabel,
+	 *  con un gráfico específico de serpiente
 	 * @author
 	 */
 	public class JLabelBloque extends JLabel 
@@ -26,7 +26,7 @@ import javax.swing.JPanel;
 		
 		
 	
-		/** Construye y devuelve el JLabel del coche con su gráfico y tamaño
+		/** Construye y devuelve el JLabel de la serpiente con su gráfico y tamaño
 		 */
 		public JLabelBloque() {
 	
@@ -36,7 +36,7 @@ import javax.swing.JPanel;
 				icono= new ImageIcon(JLabelBloque.class.getResource( "Image.jpg" ).toURI().toURL() );
 				
 			} catch (Exception e) {
-				System.err.println( "Error en carga de recurso: coche.png no encontrado" );
+				System.err.println( "Error en carga de recurso: Imagen.jpg no encontrado" );
 				e.printStackTrace();
 			}
 			setSize(TAMANYO_BLOQUE, TAMANYO_BLOQUE);
@@ -47,7 +47,7 @@ import javax.swing.JPanel;
 		
 		private double miGiro = Math.PI/2;
 		/** Cambia el giro del JLabel
-		 * @param gradosGiro	Grados a los que tiene que "apuntar" el coche,
+		 * @param gradosGiro	Grados a los que tiene que "apuntar" la serpiente,
 		 * 						considerados con el 0 en el eje OX positivo,
 		 * 						positivo en sentido antihorario, negativo horario.
 		 */

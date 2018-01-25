@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import java.util.Date;
 
-	/** Clase para gestionar usuarios. Ejemplo para ver guardado y recuperación desde ficheros
+	/** Clase para gestionar jugadores.
 	 * @author 
 	 */
 	public class Player

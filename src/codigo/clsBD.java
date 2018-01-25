@@ -26,7 +26,7 @@ public class clsBD
 		    Class.forName("org.sqlite.JDBC");
 		    connection = DriverManager.getConnection("jdbc:sqlite:" + nombreBD );
 			statement = connection.createStatement();
-			statement.setQueryTimeout(30);  // poner timeout 30 msg
+			statement.setQueryTimeout(30);  
 		    return connection;
 		} 
 		

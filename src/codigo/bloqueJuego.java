@@ -7,7 +7,7 @@ public class bloqueJuego extends bloque
 {
 	 private JLabelBloque miGrafico;
 	 
-	 /**  Crea un nuevo coche de juego
+	 /**  Crea un nuevo bloque de juego
 		 */
 		public bloqueJuego() 
 		{
@@ -16,8 +16,8 @@ public class bloqueJuego extends bloque
 			miGrafico.setHorizontalAlignment(JLabel.CENTER);
 		}
 		
-		/** Devuelve el JLabel gráfico asociado al coche de juego
-		 * @return	Etiqueta gráfica del coche
+		/** Devuelve el JLabel gráfico asociado al bloque de juego
+		 * @return	Etiqueta gráfica de la serpiente
 		 */
 		public JLabelBloque getGrafico() {
 			return miGrafico;

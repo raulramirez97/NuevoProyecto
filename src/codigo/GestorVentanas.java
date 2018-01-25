@@ -4,6 +4,7 @@ package codigo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -572,6 +574,7 @@ JPanel panel;
 		private JButton Cerrar;
 		private JPanel panel1;
 		ArrayList<Player> jugadores = new ArrayList<Player>();
+		private JScrollPane Scroll;
 		
 		public Estadisticas ()
 		{
@@ -580,7 +583,11 @@ JPanel panel;
 			setSize (800, 600);
 			
 			PanelTexto = new JTextPane ();
-			this.add(PanelTexto, BorderLayout.CENTER);
+			
+			Scroll = new JScrollPane(PanelTexto);
+			
+			this.add(Scroll,BorderLayout.CENTER);
+			
 			jugadores = clsBD.LeerEstadisticas();
 			String players = "";
 			
@@ -591,15 +598,19 @@ JPanel panel;
 		
 			PanelTexto.setText(players);
 			Cerrar = new JButton ("Cerrar");
-			this.add(PanelTexto, BorderLayout.SOUTH);
+			
 			PanelTexto.setVisible(true);
 			PanelTexto.setEditable(false);
 			
-			panel1 =new JPanel();
+			Scroll.setPreferredSize(new Dimension(700,500));
 			
-			add(panel1, BorderLayout.CENTER);
-			
-			panel1.add(PanelTexto);
+			Scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+//			
+//			panel1 =new JPanel();
+//			
+//			panel1.add(Scroll);
+//			
+//			add(panel1, BorderLayout.CENTER);
 		}
 
 	}

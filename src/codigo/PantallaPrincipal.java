@@ -22,8 +22,6 @@ public class PantallaPrincipal extends JFrame
 	MiRunnable miHilo = null;
 	RandomApple miHilo2 = null;
 	cronometro miHilo3 = null;
-	int num_casillas[][] = new int [17][15];
-	Point posicion = new Point(6, 8);
 	boolean posible = true;
 	int puntuacion = 0;
 	String tiempofinal;
@@ -186,8 +184,6 @@ public class PantallaPrincipal extends JFrame
 			int  apple_posX;
 			int  apple_posY;
 			Point P;
-			
-		
 			
 			
 			while (true) 
