@@ -17,9 +17,9 @@ import java.util.logging.*;
 public class PantallaPrincipal extends JFrame
 {
 
-	private static final long serialVersionUID = 1L;  // Para serialización
+	private static final long serialVersionUID = 1L;  
 	
-	MiRunnable miHilo = null;// Hilo del bucle principal de juego
+	MiRunnable miHilo = null;
 	RandomApple miHilo2 = null;
 	cronometro miHilo3 = null;
 	int num_casillas[][] = new int [17][15];
@@ -29,10 +29,7 @@ public class PantallaPrincipal extends JFrame
 	String tiempofinal;
 	
 	
-	/** Constructor de la ventana de juego. Crea y devuelve la ventana inicializada
-	 * sin coches dentro
-//	 */
-
+	
 	class MiRunnable implements Runnable {
 		boolean sigo = true;
 		String Nombre = PantallaInicio.Nombre;
@@ -42,23 +39,12 @@ public class PantallaPrincipal extends JFrame
 		@Override
 		public void run() {
 			logger.setLevel(Level.INFO);
-			// Bucle principal forever hasta que se pare el juego...
+			
 			while (sigo) {
-				// Mover coche
+				
 			posible = false;
 			
-//				for (int i = 0; i<Principal.growUp; i++)
-//				{
-//					try {
-//						Principal.miBloque[i].mueveX();
-//						Principal.miBloque[i].mueveY();
-//						if(i!=0)	Principal.miBloque[i].setDireccionActual(Principal.miBloque[i-1].miDireccionActual);
-//						
-//						Thread.sleep(5);
-//					} catch (Exception e) {
-//					}
-//				}
-//			
+
 			double xAnterior = Principal.miBloque[0].getPosX();
 			double yAnterior = Principal.miBloque[0].getPosY();
 			
@@ -78,7 +64,7 @@ public class PantallaPrincipal extends JFrame
 				
 			
 			posible = true;
-				// Chequear choques
+				
 				if (Principal.miBloque[0].getPosX() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosX()>Principal.pPrincipal.getWidth()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
 					
 					a = RegistrarJugador(Nombre, puntuacion, tiempofinal);
@@ -87,7 +73,7 @@ public class PantallaPrincipal extends JFrame
 					
 					String fecha = formato.format(fechayHora);
 					logger.info("El juego ha acabado");
-					//BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
+					
 					
 					clsBD.InsertEstadisticas(a.getNick(), a.getPuntuacion(), a.getTiempo(), fecha);
 					
@@ -103,17 +89,16 @@ public class PantallaPrincipal extends JFrame
 					miHilo2.acaba();
 					miHilo3.acaba();
 				}
-				// Se comprueba tanto X como Y porque podría a la vez chocar en las dos direcciones
+				
 				if (Principal.miBloque[0].getPosY() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosY()>Principal.pPrincipal.getHeight()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
-					// Espejo vertical si choca en Y
-					
+				
 					a = RegistrarJugador(Nombre, puntuacion, tiempofinal);
 					Date fechayHora = a.getFecha();
 					SimpleDateFormat formato = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );						
 					
 					String fecha = formato.format(fechayHora);
 					logger.info("El juego ha acabado");
-					//BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
+				
 					
 					clsBD.InsertEstadisticas(a.getNick(), a.getPuntuacion(), a.getTiempo(), fecha);
 					
@@ -145,7 +130,6 @@ public class PantallaPrincipal extends JFrame
 						
 						String fecha = formato.format(fechayHora);
 						logger.info("El juego ha acabado");
-						//BD.insertEstadisticas(Nombre, puntuacion, tiempofinal);
 						
 						clsBD.InsertEstadisticas(a.getNick(), a.getPuntuacion(), a.getTiempo(), fecha);
 
@@ -162,7 +146,7 @@ public class PantallaPrincipal extends JFrame
 						miHilo3.acaba();
 					}
 				}
-				// Dormir el hilo 40 milisegundos
+				
 				try {
 					Thread.sleep(200);
 				} catch (Exception e) {
@@ -178,8 +162,7 @@ public class PantallaPrincipal extends JFrame
 			
 		}
 
-		/** Ordena al hilo detenerse en cuanto sea posible
-		 */
+		
 		public void acaba() 
 		{
 			sigo = false;
@@ -206,7 +189,7 @@ public class PantallaPrincipal extends JFrame
 			
 		
 			
-			// Bucle principal forever hasta que se pare el juego...
+			
 			while (true) 
 			{
 				if(Principal.miManzana == null)
@@ -229,7 +212,7 @@ public class PantallaPrincipal extends JFrame
 				}
 			
 				
-				// Dormir el hilo 40 milisegundos
+				
 				try 
 				{	
 				Thread.sleep( 33 );
@@ -266,8 +249,7 @@ public class PantallaPrincipal extends JFrame
 		}
 		
 		
-		/** Ordena al hilo detenerse en cuanto sea posible
-		 */
+		
 		public void acaba() 
 		{
 			sigo2 = false;
@@ -308,15 +290,15 @@ public class PantallaPrincipal extends JFrame
 					
 					
 					if (Principal.miBloque[0].getPosX() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosX()>Principal.pPrincipal.getWidth()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
-						// Espejo horizontal si choca en X
+						
 						
 						sigo3 = false;
 						miHilo3.acaba();
 					
 					}
-					// Se comprueba tanto X como Y porque podría a la vez chocar en las dos direcciones
+					
 					else if (Principal.miBloque[0].getPosY() < -JLabelBloque.TAMANYO_BLOQUE/2 || Principal.miBloque[0].getPosY()>Principal.pPrincipal.getHeight()-JLabelBloque.TAMANYO_BLOQUE/2 ) {
-						// Espejo vertical si choca en Y
+						
 						
 						sigo3 = false;
 						 

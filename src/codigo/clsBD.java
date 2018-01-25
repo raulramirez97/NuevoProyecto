@@ -18,11 +18,7 @@ public class clsBD
 	private static Connection connection = null;
 	private static Statement statement = null;
 	private static ResultSet rs=null;
-	/** Inicializa una BD SQLITE y devuelve una conexiÃ³n con ella. Debe llamarse a este 
-	 * mÃ©todo antes que ningÃºn otro, y debe devolver no null para poder seguir trabajando con la BD.
-	 * @param nombreBD	Nombre de fichero de la base de datos
-	 * @return	ConexiÃ³n con la base de datos indicada. Si hay algÃºn error, se devuelve null
-	 */
+	
 	public static Connection initBD ( String nombreBD ) 
 	{		
 		try
@@ -42,8 +38,6 @@ public class clsBD
 		}
 	}
 	
-	/** Cierra la conexiÃ³n con la Base de Datos
-	 */
 	public static void close() 
 	{
 		try 
@@ -57,25 +51,20 @@ public class clsBD
 		}
 	}
 	
-	/** Devuelve la conexiÃ³n si ha sido establecida previamente (#initBD()).
-	 * @return	ConexiÃ³n con la BD, null si no se ha establecido correctamente.
-	 */
+	
 	public static Connection getConnection() 
 	{
 		return connection;
 	}
 	
-	/** Devuelve una sentencia para trabajar con la BD,
-	 * si la conexiÃ³n si ha sido establecida previamente (#initBD()).
-	 * @return	Sentencia de trabajo con la BD, null si no se ha establecido correctamente.
-	 */
+	
 	public static Statement getStatement() 
 	{
 		return statement;
 	}
 	
 	
-	//Crear tablas 
+	
 	
 	
 	public static void crearTablaEstadisticas() 
@@ -88,13 +77,13 @@ public class clsBD
 					+ " nombre string,"
 					+ " puntuacion int,"
 					+ " tiempo string, "
-					+ " fecha string" //Si quitamos esto, quitar la coma del anterior
+					+ " fecha string" 
 					+ ")");
 		} 
 		
 		catch (SQLException e) 
 		{
-			// Si hay excepciÃ³n es que la tabla ya existÃ­a (lo cual es correcto). No la creamos y listo  
+			  
 		}
 	}
 	
@@ -109,7 +98,7 @@ public class clsBD
 							"'" + fecha + "')";
 					
 					int val = statement.executeUpdate( sentSQL );
-					if (val!=1) return false; //Error, no se ha insertado
+					if (val!=1) return false; 
 					return true;
 				} 
 				catch (SQLException e) 
@@ -127,7 +116,7 @@ public class clsBD
 					 "puntuacion = '"+ puntuacion + "'" +
 					 "tiempo = '"+ tiempo + "'" +
 					 "fecha = '"+ fecha + "'" +
-					"where fecha= '" + fecha + "'";//??????????????????????????????????????????'
+					"where fecha= '" + fecha + "'";
 			
 			int val = statement.executeUpdate( sentSQL );
 			if (val!=1) return false;  
@@ -142,11 +131,10 @@ public class clsBD
 	
 	public static ArrayList<Player> LeerEstadisticas()
 	{			
-		ArrayList<Player> retorno = new ArrayList<Player>(); //Aquí tendréis que hacer una variable del tipo de lo que vayáis a devolver (si fuera precio, double; si fuera toda la fila, ArrayList etc.) 
-		// Para inicializarlo, hay que inicializarlo con un valor que sepamos que si está en la tabla nunca tendrá (por ejemplo, precio = 0, ArrayList <> = null etc.)
+		ArrayList<Player> retorno = new ArrayList<Player>(); 
 		 	try 
 			{
-				//Select * si necesitáis todo lo de la tabala (el String, el boolean y el int) y si no, poner el nombre de la columna después del select (pe. select precio from ...)
+				
 				String sentSQL = "select * from estadisticas";
 				rs=statement.executeQuery( sentSQL );
 				
@@ -154,12 +142,12 @@ public class clsBD
 				{
 					while (rs.next())
 					{
-						String nombre = rs.getString("nombre"); //Si es una sola variable, rs.get<Tipo de la variable de retorno>
+						String nombre = rs.getString("nombre"); 
 						int puntuacion = rs.getInt("puntuacion");
 						String tiempoFinal = rs.getString("tiempo");
 						String fecha = rs.getString("fecha");
 						Player a = new Player (nombre, puntuacion, tiempoFinal, fecha);
-						retorno.add(a); //Si es un ArrayList, hacemos un get de cada uno de sus columnas y hacemos add de cada uno de ellos (tantos add como columnas haya)
+						retorno.add(a); 
 					}
 					rs.close();
 				}
@@ -168,28 +156,27 @@ public class clsBD
 			}
 			catch (SQLException e) 
 			{
-				return retorno; //Si devuelve 0 es que ha entrado aquí
+				return retorno; 
 			}	
 	}
 	public static Player LeerPlayer(String fecha)
 	{			
-		Player retorno = null; //Aquí tendréis que hacer una variable del tipo de lo que vayáis a devolver (si fuera precio, double; si fuera toda la fila, ArrayList etc.) 
-		// Para inicializarlo, hay que inicializarlo con un valor que sepamos que si está en la tabla nunca tendrá (por ejemplo, precio = 0, ArrayList <> = null etc.)
+		Player retorno = null; 
 		 	try 
 			{
-				//Select * si necesitáis todo lo de la tabala (el String, el boolean y el int) y si no, poner el nombre de la columna después del select (pe. select precio from ...)
+				
 				String sentSQL = "select * from estadisticas where fecha = '" + fecha + "'";
 				rs=statement.executeQuery( sentSQL );
 				
 				if(rs!=null)
 				{
 					
-						String nombre = rs.getString("nombre"); //Si es una sola variable, rs.get<Tipo de la variable de retorno>
+						String nombre = rs.getString("nombre"); 
 						int puntuacion = rs.getInt("puntuacion");
 						String tiempoFinal = rs.getString("tiempo");
 						String fecha1 = rs.getString("fecha");
 						retorno = new Player (nombre, puntuacion, tiempoFinal, fecha1);
-						 //Si es un ArrayList, hacemos un get de cada uno de sus columnas y hacemos add de cada uno de ellos (tantos add como columnas haya)
+						
 				}
 					
 				
@@ -197,10 +184,10 @@ public class clsBD
 			}
 			catch (SQLException e) 
 			{
-				return retorno; //Si devuelve 0 es que ha entrado aquí
+				return retorno; 
 			}	
 	}
-	//Este no creo que salga nunca, pero por si acaso
+	
 	public static boolean DropTable()
 	{
 		try
@@ -215,7 +202,7 @@ public class clsBD
 		}
 	}
 	
-//este podría llegar a entrar, aunque es menos probable que update. Si en algún momento veis que update no va bien, podéis hacer primero delete y luego insert otra vez.
+
 	public static boolean BorrarFila (String fecha)
 	{
 		try 
@@ -223,12 +210,11 @@ public class clsBD
 					
 					String sentSQL = "DELETE FROM estadisticas WHERE fecha = "+ fecha;
 					int val = statement.executeUpdate( sentSQL );
-					if (val!=1) return false;   //Error de borrado
-					return true;//Borrado correctamente
+					if (val!=1) return false;   
+					return true;
 				}
 				catch (SQLException e) 
 				{
-					//logger.log( Level.WARNING, e.getMessage(), e );
 					return false;
 				}
 	}

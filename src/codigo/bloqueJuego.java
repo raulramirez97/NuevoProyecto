@@ -34,13 +34,13 @@ public class bloqueJuego extends bloque
 		public void setPosY(double posY) {
 			super.setPosY(posY);
 			miGrafico.setLocation((int) posX, (int) posY);
-			miGrafico.repaint();  // Al cambiar la location, Swing redibuja automáticamente
+			miGrafico.repaint(); 
 		}
 
 		@Override
 		public void setDireccionActual( double dir ) {
 			super.setDireccionActual(dir);
 			miGrafico.setGiro(miDireccionActual);
-			miGrafico.repaint();  // Necesario porque Swing no redibuja al cambiar el giro (no pasa nada en el JLabel)
+			miGrafico.repaint();  
 		}
 }

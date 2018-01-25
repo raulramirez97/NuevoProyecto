@@ -20,19 +20,17 @@ import javax.swing.JPanel;
 	 */
 	public class JLabelBloque extends JLabel 
 	{
-		private static final long serialVersionUID = 1L;  // Para serialización
-		public static final int TAMANYO_BLOQUE= 30; // píxels (igual ancho que algo)	
+		private static final long serialVersionUID = 1L;  
+		public static final int TAMANYO_BLOQUE= 30; 	
 		ImageIcon icono;
 		
-		//TODO: Hay que reducir la imagen a 20 pixels. Ahora mismo solo se ve parte de la imagen, hay que reducir!!!!
+		
 	
 		/** Construye y devuelve el JLabel del coche con su gráfico y tamaño
 		 */
 		public JLabelBloque() {
 	
-			// Esto se haría para acceder por sistema de ficheros
-			// 		super( new ImageIcon( "bin/ud/prog3/pr00/coche.png" ) );
-			// Esto se hace para acceder tanto por recurso (jar) como por fichero
+			
 			try {
 				
 				icono= new ImageIcon(JLabelBloque.class.getResource( "Image.jpg" ).toURI().toURL() );
@@ -42,11 +40,11 @@ import javax.swing.JPanel;
 				e.printStackTrace();
 			}
 			setSize(TAMANYO_BLOQUE, TAMANYO_BLOQUE);
-			// Esto sería útil cuando hay algún problema con el gráfico: borde de color del JLabel
+			
 			setBorder( BorderFactory.createLineBorder( Color.CYAN, 1 ));
 		}
 		
-		// giro
+		
 		private double miGiro = Math.PI/2;
 		/** Cambia el giro del JLabel
 		 * @param gradosGiro	Grados a los que tiene que "apuntar" el coche,
@@ -55,16 +53,16 @@ import javax.swing.JPanel;
 		 */
 		public void setGiro( double gradosGiro ) 
 		{
-			// De grados a radianes...
+			
 			miGiro = gradosGiro/180*Math.PI;
-			// El giro en la pantalla es en sentido horario (inverso):
-			miGiro = -miGiro;  // Cambio el sentido del giro
-			// Y el gráfico del coche apunta hacia arriba (en lugar de derecha OX)
-			miGiro = miGiro + Math.PI/2; // Sumo 90º para que corresponda al origen OX
+			
+			miGiro = -miGiro;  
+			
+			miGiro = miGiro + Math.PI/2; 
 		}
 		
 
-		// Redefinición del paintComponent para que se escale y se rote el gráfico
+		
 		@Override
 			protected void paintComponent(Graphics g) {
 			Icon nuevoIcono = new ImageIcon(icono.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));

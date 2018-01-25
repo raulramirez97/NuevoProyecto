@@ -34,41 +34,26 @@ import codigo.GameOver.Estadisticas;
 import codigo.PantallaPrincipal.MiRunnable;
 
 
-///** Clase para gestionar visibilización de ventanas de forma global.
-// * Las ventanas se deben crear sin ser visibles, y añadirse al gestor
-// *   con el método add( JFrame )
-// * Se deben crear sin dispose automático al cierre 
-// *   (para poderse visualizar varias veces).
-// * Este método se ejecuta una única vez al inicio de la clase.
-// * @author 
-// */
+
 public class GestorVentanas 
 {
 
-	/* Lista de ventanas. Gestión interna de todas las ventanas utilizadas */
+	
 	private static ArrayList<JFrame> listaVentanas = init();
 
-	/** Inicializador de Ventanas.
-	 * Podría crear e inicializar todas las ventanas del gestor.
-	 * (o se van añadiendo con el método add)
-	 * @return	ArrayList de todas las ventanas creadas
-	 */
+	
 	private static ArrayList<JFrame> init() {
 		ArrayList<JFrame> lista = new ArrayList<JFrame>();
-		// Si queremos ventanas por defecto creadas se podrían poner aquí
-		// lista.add( new Ventana... );
+		
 		return lista;
 	}
 
-	/** Añade una ventana al gestor
-	 * @param vent
-	 */
+	
 	public static void add( JFrame vent ) {
 		listaVentanas.add( vent );
 	}
 	
-	/** Libera y cierra todas las ventanas del gestor
-	 */
+	
 	public static void closeAndDispose() {
 		for (JFrame vent : listaVentanas) {
 			vent.dispose();
@@ -76,21 +61,16 @@ public class GestorVentanas
 		listaVentanas.clear();
 	}
 	
-	/** Hace visible la ventana indicada.
-	 * Si hay algún error en los parámetros, no hace nada.
-	 * @param ventanaAVisibilizar	Clase de la ventana a hacer visible
-	 * @param ocultarElResto	Si true, oculta el resto. Si no, las deja como estuvieran
-	 * @param numDeVentana	Si hay más de una ventana de la misma clase, índice de la ventana a visibilizar
-	 */
+	
 	public static void hacerVisible(Class<?> ventanaAVisibilizar, boolean ocultarElResto, int numDeVentana ) {
 		for (JFrame vent : listaVentanas) {
 			if (vent.getClass().isAssignableFrom( ventanaAVisibilizar )) {
-				// Si la clase de la ventana es igual o descendiente de la indicada
+				
 				if (numDeVentana > 0) {
-					// Si no es la primera, esperar la siguiente
+					
 					numDeVentana--;
 					if (ocultarElResto) vent.setVisible( false );
-				} else if (numDeVentana == 0) {  // Si lo es, visibilizarla
+				} else if (numDeVentana == 0) {  
 					vent.setVisible( true );
 					numDeVentana--;
 				} else {
@@ -102,19 +82,15 @@ public class GestorVentanas
 		}
 	}
 
-	/** Oculta la ventana indicada.
-	 * Si hay algún error en los parámetros, no hace nada.
-	 * @param ventanaAOcultar	Clase de la ventana a hacer visible
-	 * @param numDeVentana	Si hay más de una ventana de la misma clase, índice de la ventana a ocultar
-	 */
+	
 	public static void ocultar(Class<?> ventanaAVisibilizar, int numDeVentana ) {
 		for (JFrame vent : listaVentanas) {
 			if (vent.getClass().isAssignableFrom( ventanaAVisibilizar )) {
-				// Si la clase de la ventana es igual o descendiente de la indicada
+				
 				if (numDeVentana > 0) {
-					// Si no es la primera, esperar la siguiente
+					
 					numDeVentana--;
-				} else {  // Si lo es, visibilizarla
+				} else {  
 					vent.setVisible( false );
 					break;
 				}
@@ -152,7 +128,7 @@ public class GestorVentanas
 	}
 
 	
-	/* Método de prueba */
+	
 	public static void main (String s[]) {
 		add( new PantallaInicio() );
 	
@@ -164,10 +140,10 @@ public class GestorVentanas
 		try
 		{
 		
-		hacerVisible( PantallaInicio.class, true, 0 ); //Pantalla de Inicio OK
+		hacerVisible( PantallaInicio.class, true, 0 ); 
 		if(PantallaInicio.jugar.isSelected()==true)
 		{
-		hacerVisible( Principal.class, true, 0 ); //Sale la pantalla principal pero no desaparece la pantalla de inicio
+		hacerVisible( Principal.class, true, 0 ); 
 		}
 		else
 		{
@@ -176,7 +152,7 @@ public class GestorVentanas
 
 		if(GameOver.retry.isSelected()==true)
 		{
-		hacerVisible( Principal.class, true, 0 );// Volver a jugar OK
+		hacerVisible( Principal.class, true, 0 );
 		}
 
 		else if(GameOver.estadisticas.isSelected()==true)
@@ -200,7 +176,7 @@ public class GestorVentanas
 
 
 
-/* Ejemplos de ventanas para la prueba */
+
 
 @SuppressWarnings("serial")
 class PantallaInicio extends JFrame 
@@ -256,7 +232,7 @@ class PantallaInicio extends JFrame
 						miVentana.creaBloque();
 						miVentana.setVisible( true );
 					
-						miVentana1.miHilo = miVentana1.new MiRunnable();  // Sintaxis de new para clase interna
+						miVentana1.miHilo = miVentana1.new MiRunnable(); 
 					
 						Thread nuevoHilo = new Thread( miVentana1.miHilo );
 						nuevoHilo.start();
@@ -298,19 +274,17 @@ class PantallaInicio extends JFrame
 @SuppressWarnings("serial")
 class Principal extends JFrame
 {
-	private static final long serialVersionUID = 1L;  // Para serializaci�n
-	static JPanel pPrincipal; // Panel del juego (layout nulo)
+	private static final long serialVersionUID = 1L; 
+	static JPanel pPrincipal; 
 	JPanel pCabecera;
-	static bloqueJuego [] miBloque; // Coche del juego
+	static bloqueJuego [] miBloque; 
 	static manzana miManzana = null;
-	PantallaPrincipal.MiRunnable miHilo = null;// Hilo del bucle principal de juego
+	PantallaPrincipal.MiRunnable miHilo = null;
 	PantallaPrincipal.RandomApple miHilo2 = null;
 	PantallaPrincipal.cronometro miHilo3 = null;
 	boolean posible = true;
 	static int growUp = 1;
-	/** Constructor de la ventana de juego. Crea y devuelve la ventana inicializada
-	 * sin coches dentro
-	 */
+	
 	public Principal()
 	{
 			
@@ -319,7 +293,7 @@ class Principal extends JFrame
 			pPrincipal = new JPanel();
 			pCabecera = new JPanel();
 			
-			// Formato y layouts
+			
 			pPrincipal.setLayout( null );
 			pPrincipal.setBackground( Color.CYAN);
 			
@@ -398,7 +372,7 @@ class Principal extends JFrame
 				}
 			});
 			
-			// Cierre del hilo al cierre de la ventana
+			
 			addWindowListener( new WindowAdapter() {
 				@Override
 				public void windowClosing(WindowEvent e) {
@@ -408,7 +382,7 @@ class Principal extends JFrame
 						miHilo2.acaba();
 						miHilo3.acaba();
 						
-						//BD.finConexion();
+						
 						clsBD.close();
 					}
 					
@@ -418,7 +392,7 @@ class Principal extends JFrame
 	}
 	public static void creaBloque( ) 
 	{
-//		// Crear y a�adir el coche a la ventana
+
 		miBloque = new bloqueJuego[300];
 		miBloque[0]=new bloqueJuego();
 		miBloque[0].setPosicion( 300, 400);
@@ -436,7 +410,6 @@ class Principal extends JFrame
 class GameOver  extends JFrame {
 	
 protected static JButton retry;
-//protected static JButton salir;
 protected static JButton estadisticas;
 protected static JButton close;
 JPanel panel;
@@ -486,7 +459,7 @@ JPanel panel;
 				miVentana.creaBloque();
 				miVentana.setVisible( true );
 			
-				miVentana1.miHilo = miVentana1.new MiRunnable();  // Sintaxis de new para clase interna
+				miVentana1.miHilo = miVentana1.new MiRunnable();  
 			
 				Thread nuevoHilo = new Thread( miVentana1.miHilo );
 				nuevoHilo.start();
