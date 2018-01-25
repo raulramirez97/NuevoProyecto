@@ -30,6 +30,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import COMUN.clsUsuarioVacio;
 import codigo.GameOver.Estadisticas;
@@ -39,7 +42,6 @@ import codigo.PantallaPrincipal.MiRunnable;
 
 public class GestorVentanas 
 {
-
 	
 	private static ArrayList<JFrame> listaVentanas = init();
 
@@ -578,7 +580,6 @@ JPanel panel;
 		
 		public Estadisticas ()
 		{
-			
 			setTitle ("Estadisticas");
 			setSize (800, 600);
 			
@@ -599,18 +600,18 @@ JPanel panel;
 			PanelTexto.setText(players);
 			Cerrar = new JButton ("Cerrar");
 			
+			StyledDocument doc = PanelTexto.getStyledDocument();
+			SimpleAttributeSet center = new SimpleAttributeSet();
+			StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+			doc.setParagraphAttributes(0, doc.getLength(), center, false);
+			
 			PanelTexto.setVisible(true);
 			PanelTexto.setEditable(false);
 			
 			Scroll.setPreferredSize(new Dimension(700,500));
 			
 			Scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-//			
-//			panel1 =new JPanel();
-//			
-//			panel1.add(Scroll);
-//			
-//			add(panel1, BorderLayout.CENTER);
+
 		}
 
 	}
