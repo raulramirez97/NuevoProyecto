@@ -1,13 +1,10 @@
 package codigo;
 
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-import java.util.Random;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

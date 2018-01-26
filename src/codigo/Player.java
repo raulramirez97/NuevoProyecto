@@ -2,15 +2,9 @@ package codigo;
 
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
-import java.util.StringTokenizer;
+
 import java.util.Date;
 
 	/** Clase para gestionar jugadores.

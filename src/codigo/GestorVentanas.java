@@ -31,7 +31,6 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
 import COMUN.clsUsuarioVacio;
-import codigo.GameOver.Estadisticas;
 
 
 
@@ -232,7 +231,6 @@ class PantallaInicio extends JFrame
 		setLocationRelativeTo(null);
 	}
 }
-@SuppressWarnings("serial")
 class Principal extends JFrame
 {
 	private static final long serialVersionUID = 1L; 
@@ -497,7 +495,9 @@ class Principal extends JFrame
 		{
 			Player a;
 			
-			return a = new Player (nick, puntuacion, tiempo);	
+			a = new Player (nick, puntuacion, tiempo);
+			
+			return a;
 			
 		}
 
@@ -525,9 +525,6 @@ class Principal extends JFrame
 		public void run() {
 			
 			logger.setLevel(Level.INFO);
-			Random r;
-			int  apple_posX;
-			int  apple_posY;
 			Point P;
 			
 			Principal miVentana = (Principal) GestorVentanas.listaVentanas.get(1);
@@ -569,6 +566,7 @@ class Principal extends JFrame
 		public Point RecursividadManzana(int NumRecu)
 		{
 			Principal miVentana = (Principal) GestorVentanas.listaVentanas.get(1);
+			String PosicionManzana;
 			Point P = null;
 			Random r;
 			int  apple_posX = 0;
@@ -590,18 +588,17 @@ class Principal extends JFrame
 						RecursividadManzana(NumRecu-1);
 					}else{
 						P = new Point(apple_posX, apple_posY);
-						logger.info("La manzana está en la posición" + P);
+						PosicionManzana = "La posición de la manzana es ("+  P.getX() +", " + P.getY() + ")";
+						logger.info(PosicionManzana);	
 						return P;
 					}
 				}
 				
 			}else{
 				P = new Point (200,300);
-				System.out.println(P);
-			}
-		
-		
-			
+				PosicionManzana = "La posición de la manzana es ("+  P.getX() + ") , (" + P.getY() + ")";
+				logger.info(PosicionManzana);	
+			}		
 			return P;
 		}
 		
@@ -850,7 +847,6 @@ JPanel panel;
 		
 		private JTextPane PanelTexto;
 		private JButton Cerrar;
-		private JPanel panel1;
 		ArrayList<Player> jugadores = new ArrayList<Player>();
 		private JScrollPane Scroll;
 		

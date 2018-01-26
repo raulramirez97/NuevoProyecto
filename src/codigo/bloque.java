@@ -1,7 +1,6 @@
 package codigo;
 
 
-import javax.swing.JLabel;
 
 public class bloque 
 

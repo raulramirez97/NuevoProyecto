@@ -3,16 +3,12 @@ package codigo;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.image.AreaAveragingScaleFilter;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 	/** Clase para visualizar un bloque de la serpiente en Swing como un JLabel,
 	 *  con un gráfico específico de serpiente
