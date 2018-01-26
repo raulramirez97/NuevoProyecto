@@ -519,9 +519,12 @@ class Principal extends JFrame
 	
 	class RandomApple implements Runnable {
 		boolean sigo2 = true;
+		private Logger logger = Logger.getLogger(MiRunnable.class.getName());
+		
 		@Override
 		public void run() {
 			
+			logger.setLevel(Level.INFO);
 			Random r;
 			int  apple_posX;
 			int  apple_posY;
@@ -546,7 +549,6 @@ class Principal extends JFrame
 					P = RecursividadManzana(5);
 					
 					miVentana.miManzana.setLocation(P);
-//					miVentana.pPrincipal.add(miVentana.miManzana);
 					miVentana.pPrincipal.repaint();
 					growUp();
 					puntuacion = puntuacion + 1;
@@ -588,7 +590,7 @@ class Principal extends JFrame
 						RecursividadManzana(NumRecu-1);
 					}else{
 						P = new Point(apple_posX, apple_posY);
-						System.out.println(P);
+						logger.info("La manzana está en la posición" + P);
 						return P;
 					}
 				}
