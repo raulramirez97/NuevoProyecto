@@ -19,26 +19,30 @@ public class bloqueJuego extends bloque
 		/** Devuelve el JLabel gráfico asociado al bloque de juego
 		 * @return	Etiqueta gráfica de la serpiente
 		 */
-		public JLabelBloque getGrafico() {
+		public JLabelBloque getGrafico() 
+		{
 			return miGrafico;
 		}
 
 		@Override
-		public void setPosX(double posX) {
+		public void setPosX(double posX) 
+		{
 			super.setPosX(posX);
 			miGrafico.setLocation((int) posX, (int) posY);
 			miGrafico.repaint();
 		}
 
 		@Override
-		public void setPosY(double posY) {
+		public void setPosY(double posY) 
+		{
 			super.setPosY(posY);
 			miGrafico.setLocation((int) posX, (int) posY);
 			miGrafico.repaint(); 
 		}
 
 		@Override
-		public void setDireccionActual( double dir ) {
+		public void setDireccionActual( double dir ) 
+		{
 			super.setDireccionActual(dir);
 			miGrafico.setGiro(miDireccionActual);
 			miGrafico.repaint();  

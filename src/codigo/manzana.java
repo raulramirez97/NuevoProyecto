@@ -53,12 +53,13 @@ public class manzana extends JLabel
 	{
 		this.posY = posY;
 	}
+	
 	@Override
 	protected void paintComponent(Graphics g) 
 	{
-	Icon nuevoIcono = new ImageIcon(icono2.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
-	setIcon(nuevoIcono);
+		Icon nuevoIcono = new ImageIcon(icono2.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+		setIcon(nuevoIcono);
 	
-	super.paintComponent(g);
+		super.paintComponent(g);
 	}
 }

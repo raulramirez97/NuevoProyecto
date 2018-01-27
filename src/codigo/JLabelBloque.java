@@ -20,21 +20,20 @@ import javax.swing.JLabel;
 		public static final int TAMANYO_BLOQUE= 30; 	
 		ImageIcon icono;
 		
-		
-	
 		/** Construye y devuelve el JLabel de la serpiente con su gráfico y tamaño
 		 */
-		public JLabelBloque() {
-	
-			
-			try {
-				
-				icono= new ImageIcon(JLabelBloque.class.getResource( "Image.jpg" ).toURI().toURL() );
-				
-			} catch (Exception e) {
+		public JLabelBloque() 
+		{	
+			try
+			{
+					icono= new ImageIcon(JLabelBloque.class.getResource( "Image.jpg" ).toURI().toURL() );
+					
+			} catch (Exception e) 
+			{
 				System.err.println( "Error en carga de recurso: Imagen.jpg no encontrado" );
 				e.printStackTrace();
 			}
+			
 			setSize(TAMANYO_BLOQUE, TAMANYO_BLOQUE);
 			
 			setBorder( BorderFactory.createLineBorder( Color.CYAN, 1 ));
@@ -60,15 +59,11 @@ import javax.swing.JLabel;
 
 		
 		@Override
-			protected void paintComponent(Graphics g) {
+		protected void paintComponent(Graphics g) 
+		{
 			Icon nuevoIcono = new ImageIcon(icono.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 			setIcon(nuevoIcono);
 			
 			super.paintComponent(g);
-
 	}
-	}
-
-	
-	
-
+}

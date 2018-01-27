@@ -12,14 +12,12 @@ import java.util.Date;
 	 */
 	public class Player
 	{
-		
 		private static final long serialVersionUID = 1L;
 		private String nick;
 		private int puntuacion;
 		private String tiempo;
 		private Date fecha;
-		
-		
+			
 		public Player()
 		{
 			
@@ -39,56 +37,65 @@ import java.util.Date;
 			this.puntuacion=puntuacion;
 			this.tiempo=tiempo;
 			SimpleDateFormat formato = new SimpleDateFormat( "dd/MM/yyyy HH:mm:ss" );
-			try {
+			try 
+			{
 				this.fecha = formato.parse(fecha);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
+			} catch (ParseException e) 
+			{
 				e.printStackTrace();
 			}
 		}
 		
-		
-
-		public String getNick() {
+		public String getNick() 
+		{
 			return nick;
 		}
 
-		public void setNick(String nick) {
+		public void setNick(String nick) 
+		{
 			this.nick = nick;
 		}
 
-		public int getPuntuacion() {
+		public int getPuntuacion() 
+		{
 			return puntuacion;
 		}
 
-		public void setPuntuacion(int puntuacion) {
+		public void setPuntuacion(int puntuacion) 
+		{
 			this.puntuacion = puntuacion;
 		}
 
-		public String getTiempo() {
+		public String getTiempo() 
+		{
 			return tiempo;
 		}
 
-		public void setTiempo(String tiempo) {
+		public void setTiempo(String tiempo)
+		{
 			this.tiempo = tiempo;
 		}
 		
-		public Date getFecha() {
+		public Date getFecha()
+		{
 			return fecha;
 		}
 
-		public void setFecha(Date fecha) {
+		public void setFecha(Date fecha) 
+		{
 			this.fecha = fecha;
 	
 		}
 
 		@Override
-		public String toString() {
+		public String toString()
+		{
 			return "Usuario: " + nick + " ; Puntuación: " + puntuacion + " tiempo: " + tiempo + " fecha: " + fecha;
 		}
 
 		@Override
-		public int hashCode() {
+		public int hashCode() 
+		{
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
@@ -96,7 +103,8 @@ import java.util.Date;
 		}
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(Object obj) 
+		{
 			if (this == obj)
 				return true;
 			if (obj == null)
@@ -111,8 +119,4 @@ import java.util.Date;
 				return false;
 			return true;
 		}
-
-		
-		
-	
 	}

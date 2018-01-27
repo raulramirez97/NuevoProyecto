@@ -28,8 +28,8 @@ public class clsBD
 		
 		catch (ClassNotFoundException | SQLException e) 
 		{
-			JOptionPane.showMessageDialog( null, "Error de conexiÃ³n!! No se ha podido conectar con " + nombreBD , "ERROR", JOptionPane.ERROR_MESSAGE );
-			System.out.println( "Error de conexiÃ³n!! No se ha podido conectar con " + nombreBD );
+			JOptionPane.showMessageDialog( null, "Error de conexi�n!! No se ha podido conectar con " + nombreBD , "ERROR", JOptionPane.ERROR_MESSAGE );
+			System.out.println( "Error de conexi�n!! No se ha podido conectar con " + nombreBD );
 			return null;
 		}
 	}
@@ -60,9 +60,6 @@ public class clsBD
 	}
 	
 	
-	
-	
-	
 	public static void crearTablaEstadisticas() 
 	{
 		if (statement==null) return;
@@ -85,22 +82,21 @@ public class clsBD
 	
 	public static boolean InsertEstadisticas (String nombre, int puntuacion, String tiempo, String fecha)
 	{
-				try 
-				{					
-					String sentSQL = "insert into estadisticas values(" +
+		try 
+		{					
+			String sentSQL = "insert into estadisticas values(" +
 							"'" + nombre + "', " +
 							"'" + puntuacion + "', " +
 							"'" + tiempo + "', " +
 							"'" + fecha + "')";
-					
-					int val = statement.executeUpdate( sentSQL );
-					if (val!=1) return false; 
-					return true;
-				} 
-				catch (SQLException e) 
-				{
-					return false;
-				}
+				
+			int val = statement.executeUpdate( sentSQL );
+			if (val!=1) return false; 
+			return true;
+		}catch (SQLException e) 
+		{
+			return false;
+		}
 	}
 	
 	public static boolean UpdateEstadisticas (String nombre, int puntuacion, String tiempo, String fecha)
@@ -108,11 +104,11 @@ public class clsBD
 		try 
 		{
 			String sentSQL = "update estadisticas set " +
-					 "nombre = '"+ nombre + "'" +
-					 "puntuacion = '"+ puntuacion + "'" +
-					 "tiempo = '"+ tiempo + "'" +
-					 "fecha = '"+ fecha + "'" +
-					"where fecha= '" + fecha + "'";
+							"nombre = '"+ nombre + "'" +
+							"puntuacion = '"+ puntuacion + "'" +
+							"tiempo = '"+ tiempo + "'" +
+							"fecha = '"+ fecha + "'" +
+							"where fecha= '" + fecha + "'";
 			
 			int val = statement.executeUpdate( sentSQL );
 			if (val!=1) return false;  
@@ -129,8 +125,7 @@ public class clsBD
 	{			
 		ArrayList<Player> retorno = new ArrayList<Player>(); 
 		 	try 
-			{
-				
+			{		
 				String sentSQL = "select * from estadisticas";
 				rs=statement.executeQuery( sentSQL );
 				
@@ -155,33 +150,31 @@ public class clsBD
 				return retorno; 
 			}	
 	}
+	
+	
 	public static Player LeerPlayer(String fecha)
 	{			
 		Player retorno = null; 
-		 	try 
+	 	try 
+	 	{
+			String sentSQL = "select * from estadisticas where fecha = '" + fecha + "'";
+			rs=statement.executeQuery( sentSQL );
+				
+			if(rs!=null)
 			{
-				
-				String sentSQL = "select * from estadisticas where fecha = '" + fecha + "'";
-				rs=statement.executeQuery( sentSQL );
-				
-				if(rs!=null)
-				{
-					
-						String nombre = rs.getString("nombre"); 
-						int puntuacion = rs.getInt("puntuacion");
-						String tiempoFinal = rs.getString("tiempo");
-						String fecha1 = rs.getString("fecha");
-						retorno = new Player (nombre, puntuacion, tiempoFinal, fecha1);
+				String nombre = rs.getString("nombre"); 
+				int puntuacion = rs.getInt("puntuacion");
+				String tiempoFinal = rs.getString("tiempo");
+				String fecha1 = rs.getString("fecha");
+				retorno = new Player (nombre, puntuacion, tiempoFinal, fecha1);
 						
-				}
-					
-				
-				return retorno;
 			}
-			catch (SQLException e) 
-			{
-				return retorno; 
-			}	
+		
+			return retorno;
+		}catch (SQLException e) 
+		{
+			return retorno; 
+		}	
 	}
 	
 	public static boolean DropTable()
@@ -191,8 +184,8 @@ public class clsBD
 			String sentSQL = "drop table estadisticas";
 			int val = statement.executeUpdate( sentSQL );
 			return true;
-		} 
-		catch (SQLException e) 
+	
+		}catch (SQLException e) 
 		{
 			return false;
 		}
@@ -202,16 +195,14 @@ public class clsBD
 	public static boolean BorrarFila (String fecha)
 	{
 		try 
-				{
-					
-					String sentSQL = "DELETE FROM estadisticas WHERE fecha = "+ fecha;
-					int val = statement.executeUpdate( sentSQL );
-					if (val!=1) return false;   
-					return true;
-				}
-				catch (SQLException e) 
-				{
-					return false;
-				}
+		{
+			String sentSQL = "DELETE FROM estadisticas WHERE fecha = "+ fecha;
+			int val = statement.executeUpdate( sentSQL );
+			if (val!=1) return false;   
+			return true;
+		}catch (SQLException e) 
+		{
+			return false;
+		}
 	}
 }
