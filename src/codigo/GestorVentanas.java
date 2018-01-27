@@ -181,61 +181,6 @@ class PantallaInicio extends JFrame
 		
 		panel.setLayout(null);
 			
-		this.addKeyListener( new KeyAdapter()
-		{
-			@Override
-			public void keyPressed(KeyEvent arg0)
-			{
-				switch (arg0.getKeyCode()) 
-				{
-					case KeyEvent.VK_DELETE: 
-				{
-					Nombre=user.getText();
-					
-					if (!Nombre.isEmpty())
-					{	
-						PantallaInicio inicio = (PantallaInicio) GestorVentanas.listaVentanas.get(0);
-						inicio.dispose();
-						GestorVentanas.listaVentanas.remove(0);
-						
-						Principal miVentana = new Principal();
-						GestorVentanas.add(miVentana);
-						
-						miVentana.creaBloque();
-						miVentana.setVisible( true );
-					
-						miVentana.miHilo = miVentana.new MiRunnable(); 
-					
-						Thread nuevoHilo = new Thread( miVentana.miHilo );
-						nuevoHilo.start();
-					
-						miVentana.miHilo2 = miVentana.new RandomApple();
-				
-						Thread nuevoHilo2 = new Thread( miVentana.miHilo2 );
-						nuevoHilo2.start();
-						
-						miVentana.miHilo3 = miVentana.new cronometro();
-					
-						Thread nuevoHilo3 = new Thread (miVentana.miHilo3 );
-						nuevoHilo3.start();
-				
-					} else  
-					{
-						try {
-							throw new clsUsuarioVacio();
-						} catch (clsUsuarioVacio e) 
-						{
-							JOptionPane.showMessageDialog((JButton) arg0.getSource(), e.getMessage());
-						}
-					}
-				}
-				
-			}
-			
-		}
-		
-		
-	});
 
 			jugar.addActionListener( new ActionListener() 
 			{
